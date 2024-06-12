@@ -1,8 +1,17 @@
 import { StyleSheet, Pressable, Text } from "react-native";
+import axios from "axios";
+import { API_KEY } from "@env";
 
 export default function Botao(props) {
   return (
     <Pressable
+      onPress={async () => {
+        const res = (
+          await axios.get(
+            `https://api.thecatapi.com/v1/images/search?limit=5&api_key=${API_KEY}`
+          )
+        ).data;
+      }}
       style={({ pressed }) => [
         { backgroundColor: pressed ? "#2b3d9f" : "#3354fd" },
         styles.button,
